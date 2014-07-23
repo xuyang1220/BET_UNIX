@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load url from future %}
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Board Estimation Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap JavaScript-->
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <!--script>
+        // this is the id of the form
+            $("#myForm").submit(function() {
+
+                var url = "path/to/your/script.php"; // the script where you handle the form input.
+
+                $.ajax({
+                       type: "POST",
+                       url: url,
+                       data: $("#idForm").serialize(), // serializes the form's elements.
+                       success: function(data)
+                       {
+                           alert(data); // show response from the php script.
+                       }
+                     });
+
+                return false; // avoid to execute the actual submit of the form.
+            });
+    </script-->
+    <!-- Custom styles for this template -->
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <a class="navbar-brand" href={% url 'index' %}>Board Estimation Tool</a>
+          <form class="navbar-form navbar-right" role="form" action="." method="post">
+            {% csrf_token %}
+            {%block search%}
+                <a href={% url 'search'%}><li class="btn btn-default">Search</li></a>
+            {% endblock %}
+            <div class="form-group">
+            <ul class="nav navbar-nav">
+              <li><a href={% url 'advancedsearch'%}>Advanced Search</a></li>
+            </ul>
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+    <div class="container">
+        {% block newtask %}{% endblock %}
+        {% block login %}{% endblock %}
+        {% block showdetail %}{% endblock %}
+    </div>
+    {% block advancedsearch %}{% endblock %}
+    {% block showsimilar %}{% endblock %}
+    <div class="container">
+        <footer>
+                 <p>© Oracle 2014</p>
+        </footer>
+    </div>
+
+    <!--nav class="navbar navbar-custom navbar-static-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Title</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div></.navbar-collapse>
+    </nav-->
+
+</body>
